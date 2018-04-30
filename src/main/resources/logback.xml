@@ -6,7 +6,7 @@
        </layout>
   </appender>
 
-  <logger name="monLogger" level="DEBUG">
+  <logger name="app.main" level="DEBUG">
 	   <appender-ref ref="STDOUT" />
    </logger>
 
