@@ -16,4 +16,8 @@ public class Livre {
 	
 	public Livre(){	
 	}
+	
+	public String toString(){
+		return this.id + " - " + this.titre + " - " + this.auteur;
+	}
 }
