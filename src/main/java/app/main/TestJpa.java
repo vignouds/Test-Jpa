@@ -22,9 +22,18 @@ public class TestJpa {
 		transac.begin();
 		
 		Livre livre1 = em.find(Livre.class, 1);
-		LOG.info(livre1.toString());
-		Query query = em.createQuery("select livre from Livre livre where livre.titre='Germinal'");
+		LOG.debug(livre1.toString());
+		Query query = em.createQuery("select livre from Livre livre where livre.titre=:reference");
+		query.setParameter("reference", "Germinal");
 		Livre livre2 = (Livre) query.getResultList().get(0);
-		LOG.info(livre2.toString());
+		LOG.debug(livre2.toString());
+		
+		Query query2 = em.createQuery("from Emprunt where id=:identifiant");
+		query2.setParameter("identifiant", 2);
+		
+		Query query3 = em.createQuery("from Client where id=:identifiant");
+		query3.setParameter("identifiant", 2);
+		
+		em.close();
 	}
 }
