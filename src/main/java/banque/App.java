@@ -41,8 +41,17 @@ public class App {
 		
 		Operation operation = new Operation(LocalDateTime.now(), 150.00, "motif", compte);
 		em.persist(operation);
+		
+		LivretA livretA = new LivretA("789789", 2500.00, 3.1);
+		em.persist(livretA);
+		
+		AssuranceVie assuranceVie = new AssuranceVie("112233", 25000.00, LocalDate.now(), 1.5);
+		em.persist(assuranceVie);
+		
+		Virement virement = new Virement(LocalDateTime.now(), 100.00, "motif", compte, "beneficiaire");
+		em.persist(virement);
+		
 		transac.commit();
-
 	}
 
 }
