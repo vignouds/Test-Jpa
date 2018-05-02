@@ -23,7 +23,7 @@ public class Client {
 	@Column(name="prenom")
 	private String prenom;
 	@Column(name="dateNaissance", nullable=false)
-	private LocalDate dateNiassance;
+	private LocalDate dateNaissance;
 	@Embedded Adresse adresse;
 	
 	@ManyToOne
@@ -35,6 +35,17 @@ public class Client {
 	joinColumns=@JoinColumn(name="ID_CLI", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="ID_CPT", referencedColumnName="id"))
 	private Set<Compte> comptes;
+
+	public Client(Integer id, String nom, String prenom, LocalDate dateNaissance, Adresse adresse, Banque banque) {
+		Set<Compte> cp = null;
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
+		this.banque = banque;
+		this.comptes = cp;
+	}
 }
 
 @Embeddable
@@ -43,6 +54,9 @@ class Adresse{
 	private String rue;
 	private int codePostal;
 	private String ville;
+	
+	public Adresse() {
+	}
 	
 	public int getNumero() {
 		return numero;

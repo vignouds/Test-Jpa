@@ -23,4 +23,12 @@ public class Compte {
 	
 	@ManyToMany(mappedBy="comptes")
 	private Set<Client> clients;
+
+	public Compte(Integer id, String numero, double solde) {
+		Set<Operation> op = null;
+		this.id = id;
+		this.numero = numero;
+		this.solde = solde;
+		this.operations = op;		
+	}
 }

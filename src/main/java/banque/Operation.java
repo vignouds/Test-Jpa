@@ -23,4 +23,12 @@ public class Operation {
 	@ManyToOne
 	@JoinColumn(name="CPT_ID")
 	private Compte compte;
+
+	public Operation(Integer id, LocalDateTime date, double montant, String motif, Compte compte) {
+		this.id = id;
+		this.date = date;
+		this.montant = montant;
+		this.motif = motif;
+		this.compte = compte;
+	}
 }

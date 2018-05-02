@@ -17,4 +17,11 @@ public class Banque {
 	
 	@OneToMany(mappedBy="banque")
 	private Set<Client> clients;
+
+	public Banque(Integer id, String nom) {
+		Set<Client> cl = null;
+		this.id = id;
+		this.nom = nom;
+		this.clients = cl;
+	}
 }
