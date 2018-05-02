@@ -27,6 +27,7 @@ public class App {
 		em.persist(creditAgricole);
 		em.persist(caisseDep);
 		
+		
 		Adresse adresse = new Adresse();
 		adresse.setNumero(580);
 		adresse.setRue("rue du chef lieu");
@@ -47,9 +48,6 @@ public class App {
 		
 		Virement virement = new Virement(LocalDateTime.now(), 100.00, "motif", livretA, "beneficiaire");
 		em.persist(virement);
-		
-		creditAgricole.getClients().add(seb);
-		creditAgricole.getClients().add(yuli);
 
 		transac.commit();
 	}
