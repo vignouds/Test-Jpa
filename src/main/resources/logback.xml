@@ -9,6 +9,10 @@
   <logger name="app.main" level="DEBUG">
 	   <appender-ref ref="STDOUT" />
    </logger>
+   
+     <logger name="banque" level="DEBUG">
+	   <appender-ref ref="STDOUT" />
+   </logger>
 
   <root level="ERROR">
 	   <appender-ref ref="STDOUT" />

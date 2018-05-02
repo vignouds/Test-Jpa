@@ -5,11 +5,12 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="banque")
+@Table(name="compte")
 public class Compte {
 	@Id private Integer id;
 	@Column(name="numero")
@@ -19,4 +20,7 @@ public class Compte {
 	
 	@OneToMany(mappedBy="compte")
 	private Set<Operation> operations;
+	
+	@ManyToMany(mappedBy="comptes")
+	private Set<Client> clients;
 }

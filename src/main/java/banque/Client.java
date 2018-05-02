@@ -1,40 +1,71 @@
 package banque;
 
 import java.time.LocalDate;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="banque")
+@Table(name="client")
 public class Client {
 	@Id private Integer id;
 	@Column(name="nom")
 	private String nom;
 	@Column(name="prenom")
 	private String prenom;
-	@Column(name="dateNiassance", nullable=false)
+	@Column(name="dateNaissance", nullable=false)
 	private LocalDate dateNiassance;
 	@Embedded Adresse adresse;
 	
 	@ManyToOne
 	@JoinColumn(name="BANQ_ID")
 	private Banque banque;
+	
+	@ManyToMany
+	@JoinTable(name="CLi_CPT",
+	joinColumns=@JoinColumn(name="ID_CLI", referencedColumnName="id"),
+	inverseJoinColumns=@JoinColumn(name="ID_CPT", referencedColumnName="id"))
+	private Set<Compte> comptes;
 }
 
 @Embeddable
 class Adresse{
-	@Column(name="numero")
 	private int numero;
-	@Column(name="rue")
 	private String rue;
-	@Column(name="codePostal")
 	private int codePostal;
-	@Column(name="ville")
 	private String ville;
+	
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public String getRue() {
+		return rue;
+	}
+	public void setRue(String rue) {
+		this.rue = rue;
+	}
+	public int getCodePostal() {
+		return codePostal;
+	}
+	public void setCodePostal(int codePostal) {
+		this.codePostal = codePostal;
+	}
+	public String getVille() {
+		return ville;
+	}
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
 }

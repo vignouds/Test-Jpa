@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="banque")
+@Table(name="operation")
 public class Operation {
 	@Id private Integer id;
 	@Column(name="date", nullable=false)
