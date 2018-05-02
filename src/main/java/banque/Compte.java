@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -12,7 +14,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="compte")
 public class Compte {
-	@Id private Integer id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	@Column(name="numero")
 	private String numero;
 	@Column(name="solde")
@@ -24,9 +28,8 @@ public class Compte {
 	@ManyToMany(mappedBy="comptes")
 	private Set<Client> clients;
 
-	public Compte(Integer id, String numero, double solde) {
+	public Compte(String numero, double solde) {
 		Set<Operation> op = null;
-		this.id = id;
 		this.numero = numero;
 		this.solde = solde;
 		this.operations = op;		

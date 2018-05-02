@@ -22,8 +22,10 @@ public class App {
 		EntityTransaction transac = em.getTransaction();
 		transac.begin();
 		
-		Banque creditAgricole = new Banque(1,"Credit Agricole");
+		Banque creditAgricole = new Banque("Credit Agricole");
+		Banque caisseDep = new Banque("Caisse d'Epargne");
 		em.persist(creditAgricole);
+		em.persist(caisseDep);
 		
 		Adresse adresse = new Adresse();
 		adresse.setNumero(580);
@@ -31,13 +33,13 @@ public class App {
 		adresse.setCodePostal(73330);
 		adresse.setVille("Domessin");
 		
-		Client seb = new Client(1, "Vignoud", "Sébastien", LocalDate.of(1989, Month.NOVEMBER, 9),adresse, creditAgricole);
+		Client seb = new Client("Vignoud", "Sébastien", LocalDate.of(1989, Month.NOVEMBER, 9),adresse, creditAgricole);
 		em.persist(seb);
 		
-		Compte compte = new Compte(1, "123456", 1200.50);
+		Compte compte = new Compte("123456", 1200.50);
 		em.persist(compte);
 		
-		Operation operation = new Operation(1, LocalDateTime.now(), 150.00, "motif", compte);
+		Operation operation = new Operation(LocalDateTime.now(), 150.00, "motif", compte);
 		em.persist(operation);
 		transac.commit();
 

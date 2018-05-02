@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,7 +19,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="client")
 public class Client {
-	@Id private Integer id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	@Column(name="nom")
 	private String nom;
 	@Column(name="prenom")
@@ -36,9 +40,8 @@ public class Client {
 	inverseJoinColumns=@JoinColumn(name="ID_CPT", referencedColumnName="id"))
 	private Set<Compte> comptes;
 
-	public Client(Integer id, String nom, String prenom, LocalDate dateNaissance, Adresse adresse, Banque banque) {
+	public Client(String nom, String prenom, LocalDate dateNaissance, Adresse adresse, Banque banque) {
 		Set<Compte> cp = null;
-		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
