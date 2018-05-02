@@ -1,4 +1,4 @@
-package banque;
+package banque2;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ public class App {
 
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 	public static void main(String[] args) {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pu_banque");
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pu_banque2");
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
 		EntityTransaction transac = em.getTransaction();
@@ -38,11 +38,6 @@ public class App {
 		Client yuli = new Client("Perez", "Guiuliana", LocalDate.of(1987, Month.SEPTEMBER, 29),adresse, creditAgricole);
 		em.persist(yuli);
 		
-		Compte compte = new Compte("123456", 1200.50);
-		em.persist(compte);
-		
-		Operation operation = new Operation(LocalDateTime.now(), 150.00, "motif", compte);
-		em.persist(operation);
 		
 		LivretA livretA = new LivretA("789789", 2500.00, 3.1);
 		em.persist(livretA);
@@ -50,7 +45,7 @@ public class App {
 		AssuranceVie assuranceVie = new AssuranceVie("112233", 25000.00, LocalDate.now(), 1.5);
 		em.persist(assuranceVie);
 		
-		Virement virement = new Virement(LocalDateTime.now(), 100.00, "motif", compte, "beneficiaire");
+		Virement virement = new Virement(LocalDateTime.now(), 100.00, "motif", livretA, "beneficiaire");
 		em.persist(virement);
 		
 		creditAgricole.getClients().add(seb);
